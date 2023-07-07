@@ -17,7 +17,7 @@ const questions = [{
 {
     type: 'input',
     message: 'Please enter install instructions: ',
-    name: 'instructions',
+    name: 'installation',
 },
 {
     type: 'input',
@@ -27,42 +27,53 @@ const questions = [{
 {
     type: 'input',
     message: 'Please enter contribution guidelines: ',
-    name: 'guidelines',
+    name: 'contributing',
 },
 {
     type: 'input',
     message: 'Please enter test instructions: ',
-    name: 'test',
+    name: 'tests',
 },
 {
     type: 'list',
     message: 'Add a license?',
-    choices: ["None", "2"],
+    choices: ["None", "MIT", "Apache 2.0", "GNU GPLv3"],
     name: 'license',
+},
+{
+    type: 'input',
+    message: 'Please enter your GitHub username: ',
+    name: 'username',
+},
+{
+    type: 'input',
+    message: 'Please enter your contact email: ',
+    name: 'email',
 }];
 
-inquirer
+// function to generate markup text and write README file
+function writeToFile(fileName, data) {
+    var markdownText = generateMarkdown(data);
+    fs.writeFile(fileName, markdownText, function (error) { if (error) { throw error } });
+}
+
+//initial function to gather user input with inquirer
+function init() {
+    inquirer
     .prompt(questions)
-    .then((response) => {
-        //fs.writeFile('data.txt',JSON.stringify(response), (error) => {error ? console.log(error) : console.log("Success!")} );
-        console.log(response)
-        //write to data object and pass to writetofile
+    .then((data) => {
+        var fileName = "README.md";
+        writeToFile(fileName, data);
     })
     .catch((error) => {
         if (error.isTtyError) {
             // Prompt couldn't be rendered in the current environment
         } else {
             // Something else went wrong
+            console.log(error);
         };
     });
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    var markdownText = generateMarkdown(data);
-}
-
-// TODO: Create a function to initialize app
-function init() { }
+ }
 
 // Function call to initialize app
 init();
