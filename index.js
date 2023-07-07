@@ -54,7 +54,7 @@ const questions = [{
 // function to generate markup text and write README file
 function writeToFile(fileName, data) {
     var markdownText = generateMarkdown(data);
-    fs.writeFile(fileName, markdownText, function (error) { if (error) { throw error } });
+    fs.writeFile(`./output/${fileName}`, markdownText, function (error) { if (error) { throw error } });
 }
 
 //initial function to gather user input with inquirer
