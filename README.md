@@ -14,3 +14,5 @@ This app is meant to be used by developers to easily create a README for their p
 
 ## Video Link
 This link shows a video demonstration of the app
+[README_Generator-walkthrough.webm](https://github.com/KRWeidner/README_Generator/assets/42842725/b8266f50-08f1-428f-b9b9-800f68af6e21)
+
